@@ -1,6 +1,5 @@
 # WAES Assignment
 
-===
 The goal of this assignment is to show your coding skills and what you value in software engineering. We value new ideas so next to the original requirement feel free to improve/add/extend.
 We evaluate the assignment depending on your role (Developer/Tester) and your level of seniority.
 
