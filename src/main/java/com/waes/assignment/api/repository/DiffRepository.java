@@ -1,6 +1,6 @@
 package com.waes.assignment.api.repository;
 
-import com.waes.assignment.api.domain.Diff;
+import com.waes.assignment.api.domain.entity.Diff;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
