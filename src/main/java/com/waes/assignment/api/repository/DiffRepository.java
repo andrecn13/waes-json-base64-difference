@@ -9,5 +9,10 @@ import java.util.Optional;
 @Repository
 public interface DiffRepository extends CrudRepository<Diff, Long> {
 
+    /**
+     * Find a DIFF by the provided identifier
+     * @param id identifier of a DIFF
+     * @return a DIFF object
+     */
     Optional<Diff> findById(Long id);
 }

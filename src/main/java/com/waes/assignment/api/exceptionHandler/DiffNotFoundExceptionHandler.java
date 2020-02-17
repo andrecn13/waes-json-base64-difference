@@ -1,7 +1,7 @@
 package com.waes.assignment.api.exceptionHandler;
 
 import com.waes.assignment.api.domain.response.ExceptionResponse;
-import com.waes.assignment.api.exception.InvalidContentException;
+import com.waes.assignment.api.exception.DiffNotFoundException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -10,13 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 /**
- * Class to configure spring bean to capture exception from {@code InvalidContentException}
+ * Class to configure spring bean to capture exception from {@code DiffNotFoundException}
  */
 @ControllerAdvice
-public class InvalidContentExceptionHandler extends ResponseEntityExceptionHandler {
+public class DiffNotFoundExceptionHandler extends ResponseEntityExceptionHandler {
 
-    @ExceptionHandler(InvalidContentException.class)
-    public ResponseEntity<ExceptionResponse> handleInvalidContentException(Exception e){
+    @ExceptionHandler(DiffNotFoundException.class)
+    public ResponseEntity<ExceptionResponse> handleDiffNotFoundException(Exception e){
         return new ResponseEntity<ExceptionResponse>(new ExceptionResponse(e.getMessage()), new HttpHeaders(), HttpStatus.BAD_REQUEST);
     }
 }

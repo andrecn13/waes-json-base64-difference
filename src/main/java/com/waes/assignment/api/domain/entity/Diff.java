@@ -5,15 +5,29 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity object that represents a DIFF
+ */
 @Entity
 @Table(name = "DIFF")
 public class Diff {
 
+    /**
+     * Identifier of a DIFF
+     */
     @Id
     @Column(name = "ID")
     private Long id;
+
+    /**
+     * Left content of a DIFF
+     */
     @Column(name = "LEFT_VALUE")
     private String left;
+
+    /**
+     * Right content of a DIFF
+     */
     @Column(name = "RIGHT_VALUE")
     private String right;
 
