@@ -5,6 +5,7 @@ import com.waes.assignment.api.domain.enums.DiffSideEnum;
 import com.waes.assignment.api.domain.response.DiffResultResponse;
 import com.waes.assignment.api.exception.DiffNotFoundException;
 import com.waes.assignment.api.exception.InvalidContentException;
+import com.waes.assignment.api.exception.InvalidDiffException;
 import com.waes.assignment.api.service.DiffService;
 import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,7 +59,7 @@ public class Endpoint {
     @ApiResponses(value = { @ApiResponse(code = 400, message = "Not a valid base64 content")})
     @RequestMapping(value = "/{id}/right", method = RequestMethod.PUT)
     public ResponseEntity<?> saveRightDiff(@ApiParam(value = "identifier of a diff", required = true) @PathVariable("id") Long id,
-                                           @RequestBody byte[] body) throws InvalidContentException {
+                                           @RequestBody byte[] body) throws InvalidContentException, InvalidDiffException {
 
         // Validate requested content
         validateRequest(body);
@@ -74,7 +75,7 @@ public class Endpoint {
      * @throws DiffNotFoundException when none diff were found with provided identifier
      */
     @ApiOperation(value = "Get differences of DIFF by ID", response = DiffResultResponse.class)
-    @ApiResponses(value = { @ApiResponse(code = 400, message = "None diff found with provided ID")})
+    @ApiResponses(value = { @ApiResponse(code = 404, message = "None diff found with provided ID")})
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     public ResponseEntity<?> getResults(@ApiParam(value = "identifier of a diff", required = true) @PathVariable("id") Long id) throws DiffNotFoundException {
         return new ResponseEntity<Optional<DiffResultResponse>>(diffService.findDifferences(id), HttpStatus.OK);

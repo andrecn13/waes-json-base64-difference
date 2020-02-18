@@ -8,6 +8,7 @@ import com.waes.assignment.api.domain.response.DiffDetailResponse;
 import com.waes.assignment.api.domain.response.DiffResultResponse;
 import com.waes.assignment.api.exception.DiffContentMissingException;
 import com.waes.assignment.api.exception.DiffNotFoundException;
+import com.waes.assignment.api.exception.InvalidDiffException;
 import com.waes.assignment.api.repository.DiffRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,13 +42,15 @@ public class DiffServiceImpl implements DiffService {
     }
 
     @Override
-    public boolean addDiff(DiffRequest request) {
+    public Diff addDiff(DiffRequest request) throws InvalidDiffException {
+        if(request == null) throw new InvalidDiffException();
+
         Diff diff = diffRepository.findById(request.getId()).orElse(new Diff((request.getId())));
 
         diff.setLeft(DiffSideEnum.LEFT.equals(request.getSide()) ? request.getValue() : diff.getLeft());
         diff.setRight(DiffSideEnum.RIGHT.equals(request.getSide()) ? request.getValue() : diff.getRight());
 
-        return diffRepository.save(diff) != null;
+        return diffRepository.save(diff);
     }
 
     /**
@@ -70,7 +73,7 @@ public class DiffServiceImpl implements DiffService {
      * Method that compare both sides of a DIFF and process their differences
      *
      * @param diff an object that represents a DIFF
-     * @return List of differences contaning offset and length
+     * @return List of differences containing offsets and length
      */
     private List<DiffDetailResponse> compileDifferences(Diff diff) {
         List<DiffDetailResponse> details = new ArrayList<>();

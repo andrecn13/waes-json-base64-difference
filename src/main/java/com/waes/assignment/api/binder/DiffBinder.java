@@ -10,6 +10,7 @@ import org.springframework.util.Base64Utils;
 public class DiffBinder {
 
     /**
+     * Method to build an DIFF request
      *
      * @param id identifier of a DIFF
      * @param body data in base64 encoded format that represents a JSON object

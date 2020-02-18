@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 /**
- * Initial apllication start up
+ * Initial application start up
  * Class that configure a spring boot application
  */
 @ComponentScan(basePackages = {"com.waes.assignment.api"})

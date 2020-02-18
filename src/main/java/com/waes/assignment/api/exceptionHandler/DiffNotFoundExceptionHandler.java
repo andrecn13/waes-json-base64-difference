@@ -17,6 +17,6 @@ public class DiffNotFoundExceptionHandler extends ResponseEntityExceptionHandler
 
     @ExceptionHandler(DiffNotFoundException.class)
     public ResponseEntity<ExceptionResponse> handleDiffNotFoundException(Exception e){
-        return new ResponseEntity<ExceptionResponse>(new ExceptionResponse(e.getMessage()), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<ExceptionResponse>(new ExceptionResponse(e.getMessage()), new HttpHeaders(), HttpStatus.NOT_FOUND);
     }
 }

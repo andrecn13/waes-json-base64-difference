@@ -4,6 +4,7 @@ import com.waes.assignment.api.domain.entity.Diff;
 import com.waes.assignment.api.domain.request.DiffRequest;
 import com.waes.assignment.api.domain.response.DiffResultResponse;
 import com.waes.assignment.api.exception.DiffNotFoundException;
+import com.waes.assignment.api.exception.InvalidDiffException;
 
 import java.util.Optional;
 
@@ -36,5 +37,5 @@ public interface DiffService {
      * @param diffRequest an object that represents a DIFF
      * @return true if the DIFF was successful persisted
      */
-    boolean addDiff(DiffRequest diffRequest);
+    Diff addDiff(DiffRequest diffRequest) throws InvalidDiffException;
 }
