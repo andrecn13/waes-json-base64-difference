@@ -45,6 +45,9 @@ To run the tests just execute:
 
     ./gradlew test 
 
+# Api Documentation
+
+To access the Api Documentation, run the application and go to http://localhost:8080/swagger-ui.html#/diff
 
 # Endpoints
 
