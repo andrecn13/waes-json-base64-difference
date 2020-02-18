@@ -35,7 +35,7 @@ public interface DiffService {
      * Method responsable for adding a DIFF
      *
      * @param diffRequest an object that represents a DIFF
-     * @return true if the DIFF was successful persisted
+     * @return an object that represents a DIFF when it is successful persisted
      */
     Diff addDiff(DiffRequest diffRequest) throws InvalidDiffException;
 }
