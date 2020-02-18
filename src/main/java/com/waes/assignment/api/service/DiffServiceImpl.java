@@ -10,6 +10,8 @@ import com.waes.assignment.api.exception.DiffContentMissingException;
 import com.waes.assignment.api.exception.DiffNotFoundException;
 import com.waes.assignment.api.exception.InvalidDiffException;
 import com.waes.assignment.api.repository.DiffRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +24,8 @@ import java.util.Optional;
  */
 @Service
 public class DiffServiceImpl implements DiffService {
+    private static final Logger LOGGER = LoggerFactory.getLogger(DiffService.class);
+
     private DiffRepository diffRepository;
 
     @Autowired
@@ -50,6 +54,8 @@ public class DiffServiceImpl implements DiffService {
         diff.setLeft(DiffSideEnum.LEFT.equals(request.getSide()) ? request.getValue() : diff.getLeft());
         diff.setRight(DiffSideEnum.RIGHT.equals(request.getSide()) ? request.getValue() : diff.getRight());
 
+        LOGGER.debug("Saving DIFF with id = {} and content on the left = {} and right {}", diff.getId(), diff.getLeft(), diff.getRight());
+
         return diffRepository.save(diff);
     }
 
@@ -76,6 +82,8 @@ public class DiffServiceImpl implements DiffService {
      * @return List of differences containing offsets and length
      */
     private List<DiffDetailResponse> compileDifferences(Diff diff) {
+        LOGGER.debug("Compiling differences of DIFF {}", diff.getId());
+
         List<DiffDetailResponse> details = new ArrayList<>();
 
         byte[] leftContent = diff.getLeft().getBytes();
